@@ -74,23 +74,19 @@ curl -X DELETE https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks
 
 ---
 
-📸 Screenshots
+## 📸 Screenshots
 
-🔹 API Gateway
+### 🔹 API Gateway
+![API Gateway](screenshots/api-gateway.png)
 
-"API Gateway" (screenshots/api-gateway.png)
+### 🔹 Lambda Functions
+![Lambda](screenshots/lambda-functions.png)
 
-🔹 Lambda Functions
+### 🔹 DynamoDB Table
+![DynamoDB](screenshots/dynamodb.png)
 
-"Lambda" (screenshots/lambda-functions.png)
-
-🔹 DynamoDB Table
-
-"DynamoDB" (screenshots/dynamodb.png)
-
-🔹 API Test (CloudShell)
-
-"API Test" (screenshots/api-test.png)
+### 🔹 API Test (CloudShell)
+![API Test](screenshots/api-test.png)
 
 ---
 
