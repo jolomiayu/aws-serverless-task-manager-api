@@ -16,12 +16,7 @@ phases:
   post_build:
     commands:
       - echo Deploying application...
-      - sam deploy \
-          --stack-name task-manager-api \
-          --region eu-west-1 \
-          --capabilities CAPABILITY_IAM \
-          --no-confirm-changeset \
-          --no-fail-on-empty-changeset
+      - sam deploy --stack-name task-manager-api --region eu-west-1 --capabilities CAPABILITY_IAM --no-confirm-changeset --no-fail-on-empty-changeset
 
 artifacts:
   files:
