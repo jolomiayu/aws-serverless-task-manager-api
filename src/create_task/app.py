@@ -18,7 +18,7 @@ def lambda_handler(event, context):
     return {
         'statusCode': 200,
         'body': json.dumps({
-            'message': 'Task created',
+            'message': 'test created via CI/CD',
             'task': task
         })
     }
