@@ -79,3 +79,17 @@ Resources:
           Properties:
             Path: /tasks/{id}
             Method: put
+LoginFunction:
+  Type: AWS::Serverless::Function
+  Properties:
+    Handler: src/login/app.lambda_handler
+    Runtime: python3.9
+    CodeUri: .
+    MemorySize: 128
+    Timeout: 10
+    Events:
+      LoginApi:
+        Type: Api
+        Properties:
+          Path: /login
+          Method: post
