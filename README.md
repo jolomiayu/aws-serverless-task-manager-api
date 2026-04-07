@@ -121,3 +121,31 @@ sam deploy
 👤 Author
 
 Built by Jolomi Ayu
+
+[3:14 PM, 4/7/2026] Jenzycakes: ## 🚨 Monitoring & Alerting (Project 9)
+
+This project includes production-level monitoring and alerting:
+
+- 📊 AWS CloudWatch Metrics for Lambda errors
+- 🚨 CloudWatch Alarm triggered on failures
+- 📩 SNS Email Notifications for real-time alerts
+
+### How it works
+
+1. When an error occurs in the Lambda function  
+2. CloudWatch detects the error metric  
+3. Alarm state changes to ALARM  
+4. SNS sends an email notification  
+
+### Test
+
+```bash
+curl -X POST "https://your-api-url/Prod/tasks?fail=true"
+[3:15 PM, 4/7/2026] Jenzycakes: ---
+
+# 📤 Then commit
+
+```bash
+git add .
+git commit -m "Add monitoring and alerting (Project 9)"
+git push
