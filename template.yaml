@@ -1,30 +1,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Task Manager API v5
 
 Resources:
-
-  TasksTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: TasksTable
-      BillingMode: PAY_PER_REQUEST
-      AttributeDefinitions:
-        - AttributeName: id
-          AttributeType: S
-      KeySchema:
-        - AttributeName: id
-          KeyType: HASH
 
   CreateTaskFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/create_task/
       Handler: app.lambda_handler
       Runtime: python3.9
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: TasksTable
+      CodeUri: src/create_task
+      MemorySize: 128
+      Timeout: 10
       Events:
         CreateTaskApi:
           Type: Api
@@ -35,12 +21,11 @@ Resources:
   GetTasksFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/get_tasks/
       Handler: app.lambda_handler
       Runtime: python3.9
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: TasksTable
+      CodeUri: src/get_tasks
+      MemorySize: 128
+      Timeout: 10
       Events:
         GetTasksApi:
           Type: Api
@@ -48,15 +33,29 @@ Resources:
             Path: /tasks
             Method: get
 
+  UpdateTaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      CodeUri: src/update_task
+      MemorySize: 128
+      Timeout: 10
+      Events:
+        UpdateTaskApi:
+          Type: Api
+          Properties:
+            Path: /tasks/{id}
+            Method: put
+
   DeleteTaskFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/delete_task/
       Handler: app.lambda_handler
       Runtime: python3.9
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: TasksTable
+      CodeUri: src/delete_task
+      MemorySize: 128
+      Timeout: 10
       Events:
         DeleteTaskApi:
           Type: Api
@@ -64,46 +63,17 @@ Resources:
             Path: /tasks/{id}
             Method: delete
 
-  UpdateTaskFunction:
+  LoginFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/update_task/
       Handler: app.lambda_handler
       Runtime: python3.9
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: TasksTable
+      CodeUri: src/login
+      MemorySize: 128
+      Timeout: 10
       Events:
-        UpdateTaskApi:
+        LoginApi:
           Type: Api
           Properties:
-            Path: /tasks/{id}
-            Method: put
-LoginFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    Handler: src/login/app.lambda_handler
-    Runtime: python3.9
-    CodeUri: .
-    MemorySize: 128
-    Timeout: 10
-    Events:
-      LoginApi:
-        Type: Api
-        Properties:
-          Path: /login
-          Method: post
-LoginFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    Handler: app.lambda_handler
-    Runtime: python3.9
-    CodeUri: src/login
-    MemorySize: 128
-    Timeout: 10
-    Events:
-      LoginApi:
-        Type: Api
-        Properties:
-          Path: /login
-          Method: post
+            Path: /login
+            Method: post
