@@ -77,3 +77,5 @@ Resources:
           Properties:
             Path: /login
             Method: post
+    Metadata:
+      BuildMethod: python3.9
