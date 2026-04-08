@@ -2,6 +2,8 @@
 
 Deployed and tested on AWS with a live public API endpoint.
 
+---
+
 📌 Overview
 
 This project demonstrates a fully serverless REST API built on AWS.
@@ -32,7 +34,7 @@ The system is designed using an event-driven architecture and deployed using AWS
 - AWS Lambda
 - Amazon API Gateway
 - Amazon DynamoDB
-- AWS SAM (Serverless Application Model)
+- AWS SAM
 
 ---
 
@@ -42,55 +44,64 @@ https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod
 
 ---
 
-## 📡 API Endpoints
+📡 API Endpoints
 
-| Method | Endpoint       | Description       |
-|--------|--------------|------------------|
-| POST   | /tasks       | Create a task     |
-| GET    | /tasks       | Get all tasks     |
-| PUT    | /tasks/{id}  | Update a task     |
-| DELETE | /tasks/{id}  | Delete a task     |
+Method| Endpoint| Description
+POST| /tasks| Create a task
+GET| /tasks| Get all tasks
+PUT| /tasks/{id}| Update a task
+DELETE| /tasks/{id}| Delete a task
+POST| /login| Authenticate user
 
 ---
 
 🧪 Example Requests
 
-### Create Task
+Create Task
 
-```bash
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
 -d '{"title":"My task"}'
 
-### Get Tasks
+---
+
+Get Tasks
 
 curl https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks
 
-### Update Task
+---
+
+Update Task
 
 curl -X PUT https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id} \
 -H "Content-Type: application/json" \
--d '{"title":"Updated task"}''
+-d '{"title":"Updated task"}'
 
-### Delete Task
+---
+
+Delete Task
 
 curl -X DELETE https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id}
 
 ---
 
-## 📸 Screenshots
+📸 Screenshots
 
-### 🔹 API Gateway
-![API Gateway](screenshots/api-gateway.png)
+🔹 API Gateway
 
-### 🔹 Lambda Functions
-![Lambda](screenshots/lambda-functions.png)
+"API Gateway" (./images/api-gateway.png)
 
-### 🔹 DynamoDB Table
-![DynamoDB](screenshots/dynamodb.png)
+🔹 Lambda Functions
 
-### 🔹 API Test (CloudShell)
-![API Test](screenshots/api-test.png)
+"Lambda" (./images/lambda.png)
+
+🔹 DynamoDB Table
+
+"DynamoDB" (./images/dynamodb.png)
+
+🔹 API Test (CloudShell)
+
+"API Test" (./images/api-test.png)
 
 ---
 
@@ -101,30 +112,7 @@ sam deploy
 
 ---
 
-🎯 What I Learned
-
-- Building serverless applications on AWS
-- API Gateway + Lambda integration
-- DynamoDB operations
-- Infrastructure as Code using SAM
-- Debugging real deployment issues
-
----
-
-💡 Future Improvements
-
-- Add authentication (JWT / Cognito)
-- Add pagination
-- Add CI/CD pipeline (CodePipeline)
-- Add frontend (React)
-
----
-
-👤 Author
-
-Built by Jolomi Ayu
-
- ## 🚨 Monitoring & Alerting (Project 9)
+🚨 Monitoring & Alerting (Project 9)
 
 This project includes production-level monitoring and alerting:
 
@@ -132,39 +120,33 @@ This project includes production-level monitoring and alerting:
 - 🚨 CloudWatch Alarm triggered on failures
 - 📩 SNS Email Notifications for real-time alerts
 
-### How it works
+How it works
 
-1. When an error occurs in the Lambda function  
-2. CloudWatch detects the error metric  
-3. Alarm state changes to ALARM  
-4. SNS sends an email notification  
+1. When an error occurs in the Lambda function
+2. CloudWatch detects the error metric
+3. Alarm state changes to "ALARM"
+4. SNS sends an email notification
 
-### Test
+Test
 
-```bash
-curl -X POST "https://your-api-url/Prod/tasks?fail=true"
+curl -X POST "https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks?fail=true"
 
-# 📤 Then commit
+---
 
-```bash
-git add .
-git commit -m "Add monitoring and alerting (Project 9)"
-git push
-
-## 🔐 Authentication & Security (Project 10)
+🔐 Authentication & Security (Project 10)
 
 This project now includes JWT-based authentication to secure API endpoints.
 
-### Features
+Features
 
-- 🔑 Login endpoint (/login)
+- 🔑 Login endpoint ("/login")
 - 🔐 JWT token generation
 - 🚫 Protected endpoints (require valid token)
 - 🛡️ Unauthorized requests are blocked
 
-### How it works
+How it works
 
-1. User sends credentials to /login
+1. User sends credentials to "/login"
 2. Server returns a JWT token
 3. Client includes token in request header:
 
@@ -172,21 +154,56 @@ Authorization: Bearer <token>
 
 4. Lambda validates the token before processing the request
 
-### Test Authentication
+---
 
-#### 1. Get Token
+🔐 Get Token
 
-```bash
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/login \
 -H "Content-Type: application/json" \
 -d '{"username":"admin","password":"password"}'
 
-2. Access Protected Endpoint
-Bash
+---
+
+🚫 Without Token
+
+curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
+-H "Content-Type: application/json" \
+-d '{"title":"test"}'
+
+---
+
+✅ With Token
+
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer YOUR_TOKEN" \
 -d '{"title":"secure task"}'
-Security Note
-This is a simplified JWT implementation for learning purposes.
-In production, secrets should be stored securely (e.g., AWS Secrets Manager).
+
+---
+
+🎯 What I Learned
+
+- Building serverless applications on AWS
+- API Gateway + Lambda integration
+- DynamoDB operations
+- Infrastructure as Code using SAM
+- CI/CD pipeline setup
+- Monitoring and alerting systems
+- Debugging real-world cloud issues
+- Securing APIs with JWT authentication
+
+---
+
+💡 Future Improvements
+
+- Use AWS Cognito for authentication
+- Store secrets securely (AWS Secrets Manager)
+- Add pagination
+- Build a frontend (React)
+- Implement role-based access control
+
+---
+
+👤 Author
+
+Jolomi Ayu
