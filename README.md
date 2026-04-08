@@ -4,7 +4,7 @@ Deployed and tested on AWS with a live public API endpoint.
 
 ---
 
-##📌 Overview
+📌 Overview
 
 This project demonstrates a fully serverless REST API built on AWS.
 
@@ -19,16 +19,19 @@ The system is designed using an event-driven architecture and deployed using AWS
 
 ---
 
-##🏗️ Architecture
+🏗️ Architecture
 
 - AWS Lambda (compute)
 - API Gateway (HTTP endpoints)
 - DynamoDB (database)
 - AWS SAM (deployment)
+- AWS CodePipeline & CodeBuild (CI/CD)
+- Amazon CloudWatch (monitoring)
+- Amazon SNS (alerting)
 
 ---
 
-##⚙️ Tech Stack
+⚙️ Tech Stack
 
 - Python
 - AWS Lambda
@@ -38,13 +41,13 @@ The system is designed using an event-driven architecture and deployed using AWS
 
 ---
 
-##🌐 Live API
+🌐 Live API
 
 https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod
 
 ---
 
-##📡 API Endpoints
+📡 API Endpoints
 
 Method| Endpoint| Description
 POST| /tasks| Create a task
@@ -55,64 +58,41 @@ POST| /login| Authenticate user
 
 ---
 
-##🧪 Example Requests
+🧪 Example Requests
 
-Create Task
+🔐 Login (Get Token)
+
+curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/login \
+-H "Content-Type: application/json" \
+-d '{"username":"admin","password":"password"}'
+
+---
+
+🚫 Request Without Token
 
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
--d '{"title":"My task"}'
+-d '{"title":"test"}'
 
 ---
 
-Get Tasks
+✅ Request With Token
 
-curl https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks
-
----
-
-Update Task
-
-curl -X PUT https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id} \
+curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
--d '{"title":"Updated task"}'
+-H "Authorization: Bearer YOUR_TOKEN" \
+-d '{"title":"secure task"}'
 
 ---
 
-Delete Task
-
-curl -X DELETE https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id}
-
----
-
-##📸 Screenshots
-
-🔹 API Gateway
-
-"API Gateway" (./images/api-gateway.png)
-
-🔹 Lambda Functions
-
-"Lambda" (./images/lambda.png)
-
-🔹 DynamoDB Table
-
-"DynamoDB" (./images/dynamodb.png)
-
-🔹 API Test (CloudShell)
-
-"API Test" (./images/api-test.png)
-
----
-
-##🚀 Deployment
+🚀 Deployment
 
 sam build
 sam deploy
 
 ---
 
-##🚨 Monitoring & Alerting (Project 9)
+🚨 Monitoring & Alerting (Project 9)
 
 This project includes production-level monitoring and alerting:
 
@@ -120,13 +100,13 @@ This project includes production-level monitoring and alerting:
 - 🚨 CloudWatch Alarm triggered on failures
 - 📩 SNS Email Notifications for real-time alerts
 
-Test
+Test Monitoring
 
 curl -X POST "https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks?fail=true"
 
 ---
 
-##🔐 Authentication & Security (Project 10)
+🔐 Authentication & Security (Project 10)
 
 This project now includes JWT-based authentication to secure API endpoints.
 
@@ -149,32 +129,7 @@ Authorization: Bearer <token>
 
 ---
 
-🔐 Get Token
-
-curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/login \
--H "Content-Type: application/json" \
--d '{"username":"admin","password":"password"}'
-
----
-
-🚫 Without Token
-
-curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
--H "Content-Type: application/json" \
--d '{"title":"test"}'
-
----
-
-✅ With Token
-
-curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
--H "Content-Type: application/json" \
--H "Authorization: Bearer YOUR_TOKEN" \
--d '{"title":"secure task"}'
-
----
-
-##🎯 What I Learned
+🎯 What I Learned
 
 - Building serverless applications on AWS
 - API Gateway + Lambda integration
@@ -187,7 +142,7 @@ curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 
 ---
 
-##💡 Future Improvements
+💡 Future Improvements
 
 - Use AWS Cognito for authentication
 - Store secrets securely (AWS Secrets Manager)
@@ -197,6 +152,6 @@ curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 
 ---
 
-##👤 Author
+👤 Author
 
 Jolomi Ayu
