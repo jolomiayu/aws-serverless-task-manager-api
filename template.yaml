@@ -14,6 +14,9 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: TasksTable
+      Environment:
+        Variables:
+          TABLE_NAME: TasksTable
       Events:
         CreateTaskApi:
           Type: Api

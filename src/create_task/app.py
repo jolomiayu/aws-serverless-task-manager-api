@@ -3,12 +3,13 @@ import logging
 import boto3
 import uuid
 import jwt
+import os
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('TasksTable')
+table = dynamodb.Table(os.environ['TABLE_NAME'])
 
 SECRET_KEY = "mysecretkey"
 
@@ -16,9 +17,9 @@ def lambda_handler(event, context):
     try:
         logger.info(f"Incoming event: {json.dumps(event)}")
 
-        # ✅ AUTH CHECK
+        # 🔐 AUTH CHECK
         headers = event.get("headers", {})
-        auth_header = headers.get("Authorization")
+        auth_header = headers.get("Authorization") or headers.get("authorization")
 
         if not auth_header:
             return {
@@ -36,7 +37,7 @@ def lambda_handler(event, context):
                 "body": json.dumps({"message": "Invalid token"})
             }
 
-        # ✅ Simulate failure
+        # 💥 Error simulation
         if event.get("queryStringParameters") and event["queryStringParameters"].get("fail") == "true":
             raise Exception("Simulated failure for monitoring test")
 
