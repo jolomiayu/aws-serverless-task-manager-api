@@ -59,7 +59,14 @@ https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod
 
 ---
 
-🧪 Example Requests
+## 🧪 Example Requests
+
+### Create Task
+
+```bash
+curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
+-H "Content-Type: application/json" \
+-d '{"title":"My task"}'
 
 🔐 Login (Get Token)
 
