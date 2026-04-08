@@ -47,14 +47,15 @@ https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod
 
 ---
 
-📡 API Endpoints
+## 📡 API Endpoints
 
-Method| Endpoint| Description
-POST| /tasks| Create a task
-GET| /tasks| Get all tasks
-PUT| /tasks/{id}| Update a task
-DELETE| /tasks/{id}| Delete a task
-POST| /login| Authenticate user
+| Method | Endpoint       | Description        |
+|--------|--------------|-------------------|
+| POST   | /tasks       | Create a task      |
+| GET    | /tasks       | Get all tasks      |
+| PUT    | /tasks/{id}  | Update a task      |
+| DELETE | /tasks/{id}  | Delete a task      |
+| POST   | /login       | Authenticate user  |
 
 ---
 
