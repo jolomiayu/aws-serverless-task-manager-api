@@ -4,19 +4,22 @@ Transform: AWS::Serverless-2016-10-31
 Resources:
 
   CreateTaskFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: app.lambda_handler
-      Runtime: python3.9
-      CodeUri: src/create_task
-      MemorySize: 128
-      Timeout: 10
-      Events:
-        CreateTaskApi:
-          Type: Api
-          Properties:
-            Path: /tasks
-            Method: post
+  Type: AWS::Serverless::Function
+  Properties:
+    Handler: app.lambda_handler
+    Runtime: python3.9
+    CodeUri: src/create_task
+    MemorySize: 128
+    Timeout: 10
+    Policies:
+      - DynamoDBCrudPolicy:
+          TableName: TasksTable
+    Events:
+      CreateTaskApi:
+        Type: Api
+        Properties:
+          Path: /tasks
+          Method: post
 
   GetTasksFunction:
     Type: AWS::Serverless::Function
