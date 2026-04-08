@@ -17,7 +17,7 @@ def lambda_handler(event, context):
     try:
         logger.info(f"Incoming event: {json.dumps(event)}")
 
-        # 🔐 AUTH CHECK
+        # 🔐 AUTH
         headers = event.get("headers", {})
         auth_header = headers.get("Authorization") or headers.get("authorization")
 
@@ -37,9 +37,9 @@ def lambda_handler(event, context):
                 "body": json.dumps({"message": "Invalid token"})
             }
 
-        # 💥 Error simulation
+        # 💥 simulate error
         if event.get("queryStringParameters") and event["queryStringParameters"].get("fail") == "true":
-            raise Exception("Simulated failure for monitoring test")
+            raise Exception("Simulated failure")
 
         body = json.loads(event.get("body", "{}"))
         title = body.get("title", "No title")
@@ -52,8 +52,6 @@ def lambda_handler(event, context):
 
         table.put_item(Item=item)
 
-        logger.info(f"Task created: {item}")
-
         return {
             "statusCode": 200,
             "body": json.dumps({
@@ -63,8 +61,7 @@ def lambda_handler(event, context):
         }
 
     except Exception as e:
-        logger.error(f"Error occurred: {str(e)}")
-
+        logger.error(str(e))
         return {
             "statusCode": 500,
             "body": json.dumps({"error": str(e)})
