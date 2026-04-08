@@ -42,36 +42,41 @@ https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod
 
 ---
 
-📡 API Endpoints
+## 📡 API Endpoints
 
-Method| Endpoint| Description
-POST| /tasks| Create a task
-GET| /tasks| Get all tasks
-PUT| /tasks/{id}| Update a task
-DELETE| /tasks/{id}| Delete a task
+| Method | Endpoint       | Description       |
+|--------|--------------|------------------|
+| POST   | /tasks       | Create a task     |
+| GET    | /tasks       | Get all tasks     |
+| PUT    | /tasks/{id}  | Update a task     |
+| DELETE | /tasks/{id}  | Delete a task     |
 
 ---
 
 🧪 Example Requests
 
-Create Task
+### Create Task
 
+```bash
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
 -d '{"title":"My task"}'
 
-Get Tasks
+### Get Tasks
 
+'''bash
 curl https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks
 
-Update Task
+### Update Task
 
+'''bash
 curl -X PUT https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id} \
 -H "Content-Type: application/json" \
 -d '{"title":"Updated task"}'
 
-Delete Task
+### Delete Task
 
+'''bash
 curl -X DELETE https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id}
 
 ---
