@@ -4,22 +4,22 @@ Transform: AWS::Serverless-2016-10-31
 Resources:
 
   CreateTaskFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    Handler: app.lambda_handler
-    Runtime: python3.9
-    CodeUri: src/create_task
-    MemorySize: 128
-    Timeout: 10
-    Policies:
-      - DynamoDBCrudPolicy:
-          TableName: TasksTable
-    Events:
-      CreateTaskApi:
-        Type: Api
-        Properties:
-          Path: /tasks
-          Method: post
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      CodeUri: src/create_task
+      MemorySize: 128
+      Timeout: 10
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: TasksTable
+      Events:
+        CreateTaskApi:
+          Type: Api
+          Properties:
+            Path: /tasks
+            Method: post
 
   GetTasksFunction:
     Type: AWS::Serverless::Function
@@ -29,6 +29,9 @@ Resources:
       CodeUri: src/get_tasks
       MemorySize: 128
       Timeout: 10
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: TasksTable
       Events:
         GetTasksApi:
           Type: Api
@@ -44,6 +47,9 @@ Resources:
       CodeUri: src/update_task
       MemorySize: 128
       Timeout: 10
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: TasksTable
       Events:
         UpdateTaskApi:
           Type: Api
@@ -59,6 +65,9 @@ Resources:
       CodeUri: src/delete_task
       MemorySize: 128
       Timeout: 10
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: TasksTable
       Events:
         DeleteTaskApi:
           Type: Api
