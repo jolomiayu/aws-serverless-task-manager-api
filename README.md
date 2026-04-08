@@ -68,13 +68,26 @@ curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
 -d '{"title":"My task"}'
 
+Get Tasks
+
+curl https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks
+
+Update Task
+
+curl -X PUT https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id} \
+-H "Content-Type: application/json" \
+-d '{"title":"Updated task"}'
+
+Delete Task
+
+curl -X DELETE https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id}
+
 🔐 Login (Get Token)
 
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/login \
 -H "Content-Type: application/json" \
 -d '{"username":"admin","password":"password"}'
 
----
 
 🚫 Request Without Token
 
