@@ -120,13 +120,6 @@ This project includes production-level monitoring and alerting:
 - 🚨 CloudWatch Alarm triggered on failures
 - 📩 SNS Email Notifications for real-time alerts
 
-How it works
-
-1. When an error occurs in the Lambda function
-2. CloudWatch detects the error metric
-3. Alarm state changes to "ALARM"
-4. SNS sends an email notification
-
 Test
 
 curl -X POST "https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks?fail=true"
