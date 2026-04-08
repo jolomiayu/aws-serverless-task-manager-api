@@ -148,3 +148,43 @@ curl -X POST "https://your-api-url/Prod/tasks?fail=true"
 git add .
 git commit -m "Add monitoring and alerting (Project 9)"
 git push
+
+## 🔐 Authentication & Security (Project 10)
+
+This project now includes JWT-based authentication to secure API endpoints.
+
+### Features
+
+- 🔑 Login endpoint (/login)
+- 🔐 JWT token generation
+- 🚫 Protected endpoints (require valid token)
+- 🛡️ Unauthorized requests are blocked
+
+### How it works
+
+1. User sends credentials to /login
+2. Server returns a JWT token
+3. Client includes token in request header:
+
+Authorization: Bearer <token>
+
+4. Lambda validates the token before processing the request
+
+### Test Authentication
+
+#### 1. Get Token
+
+```bash
+curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/login \
+-H "Content-Type: application/json" \
+-d '{"username":"admin","password":"password"}'
+
+2. Access Protected Endpoint
+Bash
+curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer YOUR_TOKEN" \
+-d '{"title":"secure task"}'
+Security Note
+This is a simplified JWT implementation for learning purposes.
+In production, secrets should be stored securely (e.g., AWS Secrets Manager).
