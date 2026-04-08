@@ -4,7 +4,7 @@ Deployed and tested on AWS with a live public API endpoint.
 
 ---
 
-📌 Overview
+##📌 Overview
 
 This project demonstrates a fully serverless REST API built on AWS.
 
@@ -19,7 +19,7 @@ The system is designed using an event-driven architecture and deployed using AWS
 
 ---
 
-🏗️ Architecture
+##🏗️ Architecture
 
 - AWS Lambda (compute)
 - API Gateway (HTTP endpoints)
@@ -28,7 +28,7 @@ The system is designed using an event-driven architecture and deployed using AWS
 
 ---
 
-⚙️ Tech Stack
+##⚙️ Tech Stack
 
 - Python
 - AWS Lambda
@@ -38,13 +38,13 @@ The system is designed using an event-driven architecture and deployed using AWS
 
 ---
 
-🌐 Live API
+##🌐 Live API
 
 https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod
 
 ---
 
-📡 API Endpoints
+##📡 API Endpoints
 
 Method| Endpoint| Description
 POST| /tasks| Create a task
@@ -55,7 +55,7 @@ POST| /login| Authenticate user
 
 ---
 
-🧪 Example Requests
+##🧪 Example Requests
 
 Create Task
 
@@ -85,7 +85,7 @@ curl -X DELETE https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks
 
 ---
 
-📸 Screenshots
+##📸 Screenshots
 
 🔹 API Gateway
 
@@ -105,14 +105,14 @@ curl -X DELETE https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks
 
 ---
 
-🚀 Deployment
+##🚀 Deployment
 
 sam build
 sam deploy
 
 ---
 
-🚨 Monitoring & Alerting (Project 9)
+##🚨 Monitoring & Alerting (Project 9)
 
 This project includes production-level monitoring and alerting:
 
@@ -126,7 +126,7 @@ curl -X POST "https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks?
 
 ---
 
-🔐 Authentication & Security (Project 10)
+##🔐 Authentication & Security (Project 10)
 
 This project now includes JWT-based authentication to secure API endpoints.
 
@@ -174,7 +174,7 @@ curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 
 ---
 
-🎯 What I Learned
+##🎯 What I Learned
 
 - Building serverless applications on AWS
 - API Gateway + Lambda integration
@@ -187,7 +187,7 @@ curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 
 ---
 
-💡 Future Improvements
+##💡 Future Improvements
 
 - Use AWS Cognito for authentication
 - Store secrets securely (AWS Secrets Manager)
@@ -197,6 +197,6 @@ curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 
 ---
 
-👤 Author
+##👤 Author
 
 Jolomi Ayu
