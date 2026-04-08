@@ -68,37 +68,41 @@ curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
 -d '{"title":"My task"}'
 
-Get Tasks
+### Get Tasks
 
+'''bash
 curl https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks
 
-Update Task
+### Update Task
 
+'''bash
 curl -X PUT https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id} \
 -H "Content-Type: application/json" \
 -d '{"title":"Updated task"}'
 
-Delete Task
+### Delete Task
 
+'''bash
 curl -X DELETE https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks/{id}
 
-🔐 Login (Get Token)
+### 🔐 Login (Get Token)
 
+'''bash
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/login \
 -H "Content-Type: application/json" \
 -d '{"username":"admin","password":"password"}'
 
 
-🚫 Request Without Token
+### 🚫 Request Without Token
 
+'''bash
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
 -d '{"title":"test"}'
 
----
+### ✅ Request With Token
 
-✅ Request With Token
-
+'''bash
 curl -X POST https://2oev9ttl08.execute-api.eu-west-1.amazonaws.com/Prod/tasks \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer YOUR_TOKEN" \
